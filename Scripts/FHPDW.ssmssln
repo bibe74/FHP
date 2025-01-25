@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "FHPDW", "FHPDW\FHPDW.ssmssqlproj", "{39ECC863-6C20-4662-A34C-DA0413D1AFAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B61EFD2-3326-4175-AECB-2A1E0D6FB1AE}.Default|Default.ActiveCfg = Default
+		{39ECC863-6C20-4662-A34C-DA0413D1AFAC}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15CD0746-8FF6-41C1-8479-5B1D1DA381EB}
+	EndGlobalSection
+EndGlobal

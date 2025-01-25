@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/19/2019 2:20:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HIT3V007"
+  DTS:CreatorName="admhit3fmi"
+  DTS:DTSID="{EE35E80B-20F2-4224-8238-2D0105E43B42}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1040"
+  DTS:ObjectName="ETL_Fact_Sales"
+  DTS:VersionGUID="{CD23CA18-6FFC-4FA1-80CF-D93C62BE01B5}"
+  DTS:VersionMajor="0">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DWFHP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6BEEB40F-2A85-4DEA-9AE5-57D1653AD552}"
+      DTS:ObjectName="DWFHP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="data source=HIT3V007\SQL2016;initial catalog=DWFHP;provider=SQLNCLI11.1;integrated security=SSPI;auto translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Fact_usp_Merge_Sales"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{7D2C6308-46D5-45C4-89AF-3463D287879E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Fact_usp_Merge_Sales"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6BEEB40F-2A85-4DEA-9AE5-57D1653AD552}"
+          SQLTask:SqlStatementSource="EXEC Fact.usp_Merge_Sales;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LandingDbFlorence_usp_Merge_RiepilogoFatturato"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{A161C26F-6480-473E-A336-6BEC995CD24D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LandingDbFlorence_usp_Merge_RiepilogoFatturato"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6BEEB40F-2A85-4DEA-9AE5-57D1653AD552}"
+          SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_RiepilogoFatturato;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Staging_usp_Reload_fSales"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{46DAE64C-2F34-4027-B33F-CEC4A1020F65}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Staging_usp_Reload_fSales"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6BEEB40F-2A85-4DEA-9AE5-57D1653AD552}"
+          SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_fSales;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_RiepilogoFatturato_To_Staging_usp_Reload_fSales]"
+      DTS:CreationName=""
+      DTS:DTSID="{BE7EEAD1-45EF-48C8-894A-DC749BE14FE8}"
+      DTS:From="Package\LandingDbFlorence_usp_Merge_RiepilogoFatturato"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_RiepilogoFatturato_To_Staging_usp_Reload_fSales"
+      DTS:To="Package\Staging_usp_Reload_fSales" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_fSales_To_Fact_usp_Merge_Sales]"
+      DTS:CreationName=""
+      DTS:DTSID="{78685385-E735-4B9C-97FF-43D5D9ABA6EB}"
+      DTS:From="Package\Staging_usp_Reload_fSales"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_Staging_usp_Reload_fSales_To_Fact_usp_Merge_Sales"
+      DTS:To="Package\Fact_usp_Merge_Sales" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/19/2019 2:20:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HIT3V007"
+  DTS:CreatorName="admhit3fmi"
+  DTS:DTSID="{6E300F0F-7B52-4032-9F13-582FEC693B94}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1040"
+  DTS:ObjectName="ETL_Dim_Product"
+  DTS:VersionGUID="{E0E52E21-6240-4531-9507-DFC3B1EF0D7A}"
+  DTS:VersionMajor="0">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DWFHP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D3231AA3-82B4-4739-BDD4-97443579BE35}"
+      DTS:ObjectName="DWFHP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="data source=HIT3V007\SQL2016;initial catalog=DWFHP;provider=SQLNCLI11.1;integrated security=SSPI;auto translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Dim_usp_Merge_Product"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{6E7D1D45-AD5E-48A1-9BA6-79204ADF95E3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Dim_usp_Merge_Product"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D3231AA3-82B4-4739-BDD4-97443579BE35}"
+          SQLTask:SqlStatementSource="EXEC Dim.usp_Merge_Product;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LandingDbFlorence_usp_Merge_AnagraficaProdotti"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{BAE4469F-4B12-4AD5-8C81-FED4FE4B3157}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LandingDbFlorence_usp_Merge_AnagraficaProdotti"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D3231AA3-82B4-4739-BDD4-97443579BE35}"
+          SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_AnagraficaProdotti;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\LandingDbFlorence_usp_Merge_GPS"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{38D9AC04-41B2-4EC1-8087-913701FC2F35}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="LandingDbFlorence_usp_Merge_GPS"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D3231AA3-82B4-4739-BDD4-97443579BE35}"
+          SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_GPS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Staging_usp_Reload_dProduct"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{DF8A53F5-EE31-4807-A435-C3E3CF784D1B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Staging_usp_Reload_dProduct"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D3231AA3-82B4-4739-BDD4-97443579BE35}"
+          SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_dProduct;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_AnagraficaProdotti_To_LandingDbFlorence_usp_Merge_GPS]"
+      DTS:CreationName=""
+      DTS:DTSID="{80493327-848F-4869-93ED-E5D2920EA08D}"
+      DTS:From="Package\LandingDbFlorence_usp_Merge_AnagraficaProdotti"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_AnagraficaProdotti_To_LandingDbFlorence_usp_Merge_GPS"
+      DTS:To="Package\LandingDbFlorence_usp_Merge_GPS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_GPS_To_Staging_usp_Reload_dProduct]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E45BADB-DD86-4843-A320-FFA6FCEFED81}"
+      DTS:From="Package\LandingDbFlorence_usp_Merge_GPS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_GPS_To_Staging_usp_Reload_dProduct"
+      DTS:To="Package\Staging_usp_Reload_dProduct" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_dProduct_To_Dim_usp_Merge_Product]"
+      DTS:CreationName=""
+      DTS:DTSID="{E67BE9F0-C557-48A4-9C46-A6904580B0FC}"
+      DTS:From="Package\Staging_usp_Reload_dProduct"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_Staging_usp_Reload_dProduct_To_Dim_usp_Merge_Product"
+      DTS:To="Package\Dim_usp_Merge_Product" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

@@ -1,0 +1,3 @@
+﻿<#@ template language="C#" tier="1" #>
+    <OleDbConnection Name="DWFHP" ConnectionString="Data Source=HIT3V007\SQL2016;Initial Catalog=DWFHP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+    <AnalysisServicesConnection Name="DWFHPDev" Server="HIT3V007\SQL2016" ConnectionString="Provider=MSOLAP.5;Data Source=HIT3V007\SQL2016;Initial Catalog=DWFHPDev;" />

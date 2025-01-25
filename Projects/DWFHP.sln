@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "DWFHP_SSAS", "DWFHP_SSAS\DWFHP_SSAS.dwproj", "{5FD06C2C-339B-4F90-8293-28C79E41AC63}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "DWFHP_BIML", "DWFHP_BIML\DWFHP_BIML.dtproj", "{1A598490-380A-4380-9C2C-D99AA66A877B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+		Production|Default = Production|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FD06C2C-339B-4F90-8293-28C79E41AC63}.Development|Default.ActiveCfg = Development
+		{5FD06C2C-339B-4F90-8293-28C79E41AC63}.Development|Default.Build.0 = Development
+		{5FD06C2C-339B-4F90-8293-28C79E41AC63}.Development|Default.Deploy.0 = Development
+		{5FD06C2C-339B-4F90-8293-28C79E41AC63}.Production|Default.ActiveCfg = Production
+		{5FD06C2C-339B-4F90-8293-28C79E41AC63}.Production|Default.Build.0 = Production
+		{5FD06C2C-339B-4F90-8293-28C79E41AC63}.Production|Default.Deploy.0 = Production
+		{1A598490-380A-4380-9C2C-D99AA66A877B}.Development|Default.ActiveCfg = Development
+		{1A598490-380A-4380-9C2C-D99AA66A877B}.Development|Default.Build.0 = Development
+		{1A598490-380A-4380-9C2C-D99AA66A877B}.Production|Default.ActiveCfg = Development
+		{1A598490-380A-4380-9C2C-D99AA66A877B}.Production|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80199CFE-61FA-4B2F-999B-ACC8E29593E9}
+	EndGlobalSection
+EndGlobal

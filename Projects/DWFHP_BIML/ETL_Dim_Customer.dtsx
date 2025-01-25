@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="06/19/2019 14:20:50" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HIT3V007" DTS:CreatorName="admhit3fmi" DTS:DTSID="{758CBFBC-0E97-43DA-870F-31A23B090985}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1040" DTS:ObjectName="ETL_Dim_Customer" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{8B53FFAE-E471-4F51-BA2A-CC633658E0E5}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager DTS:CreationName="OLEDB" DTS:DTSID="{A2B52317-7892-4F31-9358-211BDA12140C}" DTS:ObjectName="DWFHP" DTS:refId="Package.ConnectionManagers[DWFHP]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:ConnectionString="data source=HIT3V007\SQL2016;initial catalog=DWFHP;provider=SQLNCLI11.1;integrated security=SSPI;auto translate=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{34C577BF-99EC-4494-B812-B641B5462780}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="LandingDbFlorence_usp_Merge_AnagraficaTerritorio" DTS:refId="Package\LandingDbFlorence_usp_Merge_AnagraficaTerritorio" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_AnagraficaTerritorio;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{78FFAAEB-3FC8-4ACD-B77B-1141EA6787A7}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="LandingDbFlorence_usp_Merge_AnagraficaClienti" DTS:refId="Package\LandingDbFlorence_usp_Merge_AnagraficaClienti" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_AnagraficaClienti;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{7CDB182A-0E9F-4142-A3E9-047585FB5D39}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="LandingDbFlorence_usp_Merge_GCS" DTS:refId="Package\LandingDbFlorence_usp_Merge_GCS" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_GCS;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{31364DDD-693A-49D5-A122-581C9E309ED5}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Staging_usp_Reload_dRegionalKeyAccount" DTS:refId="Package\Staging_usp_Reload_dRegionalKeyAccount" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_dRegionalKeyAccount;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{79F621E5-EF5C-4CF7-9DFE-6C937EB09AFD}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Staging_usp_Reload_dCustomer" DTS:refId="Package\Staging_usp_Reload_dCustomer" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_dCustomer;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{663002C8-C3E4-4D0C-8AE8-D2860A04C56B}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Dim_usp_Merge_Customer" DTS:refId="Package\Dim_usp_Merge_Customer" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Dim.usp_Merge_Customer;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{A0BE8CD3-EA34-4A5E-9F46-63812EC49282}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Staging_usp_Reload_dADUser" DTS:refId="Package\Staging_usp_Reload_dADUser" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_dADUser;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{136C6939-2065-44DE-A479-27B999F0E525}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Dim_usp_Merge_ADUser" DTS:refId="Package\Dim_usp_Merge_ADUser" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Dim.usp_Merge_ADUser;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{8589981A-3209-44B1-BE8B-A6E034A2FD50}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Staging_usp_Reload_bCustomerADUser" DTS:refId="Package\Staging_usp_Reload_bCustomerADUser" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_bCustomerADUser;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{13692FF5-FEF2-4EF6-9C15-347FA54185C1}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Bridge_usp_Merge_CustomerADUser" DTS:refId="Package\Bridge_usp_Merge_CustomerADUser" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Bridge.usp_Merge_CustomerADUser;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{3B6DF24F-3D46-45F8-9933-85B7D7D275CC}" DTS:From="Package\LandingDbFlorence_usp_Merge_AnagraficaTerritorio" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_AnagraficaTerritorio_To_LandingDbFlorence_usp_Merge_AnagraficaClienti" DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_AnagraficaTerritorio_To_LandingDbFlorence_usp_Merge_AnagraficaClienti]" DTS:To="Package\LandingDbFlorence_usp_Merge_AnagraficaClienti" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{D593024A-7DEE-4488-856A-6A81917D4F88}" DTS:From="Package\LandingDbFlorence_usp_Merge_AnagraficaClienti" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_AnagraficaClienti_To_LandingDbFlorence_usp_Merge_GCS" DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_AnagraficaClienti_To_LandingDbFlorence_usp_Merge_GCS]" DTS:To="Package\LandingDbFlorence_usp_Merge_GCS" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{58388FBE-5050-4391-AB57-8D42A3616395}" DTS:From="Package\LandingDbFlorence_usp_Merge_GCS" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_GCS_To_Staging_usp_Reload_dRegionalKeyAccount" DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_GCS_To_Staging_usp_Reload_dRegionalKeyAccount]" DTS:To="Package\Staging_usp_Reload_dRegionalKeyAccount" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{C01DA4A3-A14F-4F0C-B3D0-E4B1464CE9BF}" DTS:From="Package\Staging_usp_Reload_dRegionalKeyAccount" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Staging_usp_Reload_dRegionalKeyAccount_To_Staging_usp_Reload_dCustomer" DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_dRegionalKeyAccount_To_Staging_usp_Reload_dCustomer]" DTS:To="Package\Staging_usp_Reload_dCustomer" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{82D8893D-11D7-42D5-89B3-FD1EC8E27D71}" DTS:From="Package\Staging_usp_Reload_dCustomer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Staging_usp_Reload_dCustomer_To_Dim_usp_Merge_Customer" DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_dCustomer_To_Dim_usp_Merge_Customer]" DTS:To="Package\Dim_usp_Merge_Customer" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{69CB5B5C-53E3-4081-B77B-E1F78E886772}" DTS:From="Package\Dim_usp_Merge_Customer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Dim_usp_Merge_Customer_To_Staging_usp_Reload_dADUser" DTS:refId="Package.PrecedenceConstraints[Constraint_Dim_usp_Merge_Customer_To_Staging_usp_Reload_dADUser]" DTS:To="Package\Staging_usp_Reload_dADUser" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{D5C02652-F973-49EB-8DF5-8147FF0E4886}" DTS:From="Package\Staging_usp_Reload_dADUser" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Staging_usp_Reload_dADUser_To_Dim_usp_Merge_ADUser" DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_dADUser_To_Dim_usp_Merge_ADUser]" DTS:To="Package\Dim_usp_Merge_ADUser" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{3A833F9E-290E-4D53-A1FF-CD0F4D9B298D}" DTS:From="Package\Dim_usp_Merge_ADUser" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Dim_usp_Merge_ADUser_To_Staging_usp_Reload_bCustomerADUser" DTS:refId="Package.PrecedenceConstraints[Constraint_Dim_usp_Merge_ADUser_To_Staging_usp_Reload_bCustomerADUser]" DTS:To="Package\Staging_usp_Reload_bCustomerADUser" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{A245B12B-FEB0-4DD7-807D-E8EE79B4B344}" DTS:From="Package\Staging_usp_Reload_bCustomerADUser" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Staging_usp_Reload_bCustomerADUser_To_Bridge_usp_Merge_CustomerADUser" DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_bCustomerADUser_To_Bridge_usp_Merge_CustomerADUser]" DTS:To="Package\Bridge_usp_Merge_CustomerADUser" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

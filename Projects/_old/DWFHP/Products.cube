@@ -1,0 +1,167 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="0041b7c9-102b-4fde-80e8-a1f05cb125c3" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Products</ID>
+  <Name>Products</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="de3d9da2-7ce3-4043-9383-33376f012861">
+      <ID>Product</ID>
+      <Name>Product</Name>
+      <DimensionID>Product</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="f664f521-ba9d-4287-87e8-11219a7ea499">
+          <AttributeID>Product Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="10a7e4a2-dd28-4fff-8c00-a8a0e6c4c080">
+          <AttributeID>Division Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1117c2c2-67fd-4a7b-b57b-d5ddaa484481">
+          <AttributeID>Product Business Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8a8a24e5-2ae4-4ee5-a5e1-ca06ac54f7c4">
+          <AttributeID>Product Description</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0038ae98-19e8-437c-b21c-afebafed5b99">
+          <AttributeID>Product Description2</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b0a669a0-de7f-4f00-9e50-645bbd4f5f6b">
+          <AttributeID>PP Hyerarchy Code</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="1df6ea13-e8a1-4438-85f8-016726f4a65c">
+          <AttributeID>PP Level1 Description</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="0bc4c8fc-0127-44ff-bfd9-129d4bbc885b">
+          <AttributeID>PP Level2 Description</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="b338a636-994b-4d00-85db-63d5975c5a67">
+          <AttributeID>PP Level3 Description</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="c6b584b3-46ef-46b8-87ed-c993caaf2208">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="9db94086-2ac9-41d5-87db-b74b575cdc9b">
+      <ID>Division</ID>
+      <Name>Division</Name>
+      <DimensionID>Division</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7d0838a6-072f-495f-aeda-07741523e02e">
+          <AttributeID>Division Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="f8708ff4-bb7d-4936-a7be-2a383882abfd">
+          <AttributeID>Division Description</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="1b2465d9-41ba-4492-ba38-f6d252c6d011">
+      <ID>Product</ID>
+      <Name>Product</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="fb589198-d390-436e-8c27-ebfc7ff8e8ac">
+          <ID>Product Count</ID>
+          <Name>Product Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="36335d60-0fe2-44bf-a199-dd2b1895cd5f">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="48e063c7-39ba-42fc-9771-651657543cfc">
+              <TableID>Dim_Product</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="DegenerateMeasureGroupDimension" dwd:design-time-name="b86c97d7-8aff-4912-a17e-cc7f2358a6bf">
+          <CubeDimensionID>Product</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="2d7f7755-d034-438a-a9a1-7516a7fb7a1a">
+              <AttributeID>Product Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="372a3f9f-88ee-4572-8ec9-a084351cd45d">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="cb407384-3c89-4e46-bc37-ff187bc9e33e">
+                    <TableID>Dim_Product</TableID>
+                    <ColumnID>ProductKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="2247113f-0686-435a-9709-a14b62cc71e9">
+          <CubeDimensionID>Division</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="fefef121-0afb-47fb-9e4d-9464d86d6b38">
+              <AttributeID>Division Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="2ea0538c-fb4e-40e5-874e-3d0d84072a96">
+                  <DataType>UnsignedTinyInt</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="4a343bcf-d153-4682-ad52-8818c5895108">
+                    <TableID>Dim_Product</TableID>
+                    <ColumnID>DivisionKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="572066de-b18e-41dd-90d3-7c1f550ca4a8">
+    <DataSourceViewID>DWFHP</DataSourceViewID>
+  </Source>
+</Cube>

@@ -1,0 +1,187 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+	<#
+	string _ssas_server_name = @"HIT3V007\SQL2016";
+	string _ssas_database_name = "DWFHPDev"; // "DWFHP" per il cubo di Produzione;
+	//int _max_partitions = 2;
+
+	Server _ssas_server_ = new Server();
+	_ssas_server_.Connect(_ssas_server_name);
+	Database _db = _ssas_server_.Databases[_ssas_database_name];
+	
+	List<string> disabledDimensions = new List<string>();
+	//disabledDimensions.Add("Fact Transazioni");
+
+	List<string> disabledCubes = new List<string>();
+	//disabledCubes.Add("Transazioni");
+	
+	List<string> disabledTokens = new List<string>();
+	disabledTokens.Add("");
+	disabledTokens.Add("Disabled='true'");
+	int disabledTokenIndex = 0;
+	
+	#>
+	<Connections>
+		<AnalysisServicesConnection Name="<#=_ssas_database_name #>" ConnectionString="Data Source=<#=_ssas_server_name #>;Provider=MSOLAP;Impersonation Level=Impersonate;" Server="<#=_ssas_server_name #>" />
+	</Connections>
+	<Packages>
+    <Package Name="ProcessFull <#=_ssas_database_name #>" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+      <Tasks>
+		  <AnalysisServicesProcessing Name="Dimensions_ProcessFull" ConnectionName="<#=_ssas_database_name #>">
+			  <ProcessingConfigurations>
+	<#
+		foreach (Dimension _d in _db.Dimensions) {
+			if (disabledDimensions.IndexOf(_d.ID) < 0) {
+	#>
+				  <DimensionProcessingConfiguration DatabaseId="<#=_db.ID #>" ProcessingOption="ProcessFull" DimensionId="<#=_d.ID #>" />
+	<#
+			}
+		}
+	#>
+			  </ProcessingConfigurations>
+			  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+		  </AnalysisServicesProcessing>
+		  <AnalysisServicesProcessing Name="Cubes_ProcessFull" ConnectionName="<#=_ssas_database_name #>">
+			  <ProcessingConfigurations>
+	<#
+		foreach (Cube _c in _db.Cubes) {
+			if (disabledCubes.IndexOf(_c.Name) < 0) {
+	#>
+				  <CubeProcessingConfiguration DatabaseID="<#=_ssas_database_name #>" ProcessingOption="ProcessFull" CubeId="<#=_c.ID #>" />
+	<#
+			}
+		}
+	#>
+			  </ProcessingConfigurations>
+			  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+		  </AnalysisServicesProcessing>
+      </Tasks>
+    </Package>
+    <Package Name="ProcessUpdate <#=_ssas_database_name #>" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+      <Tasks>
+		  <AnalysisServicesProcessing Name="Dimensions_ProcessUpdate" ConnectionName="<#=_ssas_database_name #>">
+			  <ProcessingConfigurations>
+	<#
+		foreach (Dimension _d in _db.Dimensions) {
+			if (disabledDimensions.IndexOf(_d.ID) < 0) {
+	#>
+				  <DimensionProcessingConfiguration DatabaseId="<#=_db.ID #>" ProcessingOption="ProcessUpdate" DimensionId="<#=_d.ID #>" />
+	<#
+			}
+		}
+	#>
+			  </ProcessingConfigurations>
+			  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+		  </AnalysisServicesProcessing>
+		  <Container Name="Cubes_ProcessData" ConstraintMode="Parallel">
+			  <Tasks>
+	<#
+		foreach (Cube _c in _db.Cubes) {
+	#>
+				  <Container Name="Cube <#=_c.Name #>" ConstraintMode="Parallel" <#=disabledTokens[(disabledCubes.IndexOf(_c.Name) < 0) ? 0 : 1] #>>
+					  <Tasks>
+	<#
+			foreach (MeasureGroup _mg in _c.MeasureGroups) {
+	#>
+						  <Container Name="Measure Group <#=_mg.Name #>" ConstraintMode="Linear">
+							  <Tasks>
+	<#
+				foreach (Partition _p in _mg.Partitions) {
+	#>
+								  <AnalysisServicesProcessing Name="Partition <#=_p.Name #>" ConnectionName="<#=_ssas_database_name #>">
+									  <ProcessingConfigurations>
+										  <PartitionProcessingConfiguration CubeId="<#=_c.ID #>" DatabaseId="<#=_db.ID #>" MeasureGroupId="<#=_mg.ID #>" PartitionId="<#=_p.ID #>" ProcessingOption="ProcessData" />
+									  </ProcessingConfigurations>
+									  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+								  </AnalysisServicesProcessing>
+	<#
+				}
+	#>
+							  </Tasks>
+						  </Container>
+	<#
+			}
+	#>
+					  </Tasks>
+				  </Container>
+	<#
+		}
+	#>
+			  </Tasks>
+		  </Container>
+		  <AnalysisServicesProcessing Name="Cubes_ProcessIndexes" ConnectionName="<#=_ssas_database_name #>">
+			  <ProcessingConfigurations>
+	<#
+		foreach (Cube _c in _db.Cubes) {
+			if (disabledCubes.IndexOf(_c.Name) < 0) {
+	#>
+				  <CubeProcessingConfiguration DatabaseID="<#=_ssas_database_name #>" ProcessingOption="ProcessIndexes" CubeId="<#=_c.ID #>" />
+	<#
+			}
+		}
+	#>
+			  </ProcessingConfigurations>
+			  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+		  </AnalysisServicesProcessing>
+      </Tasks>
+    </Package>
+    <Package Name="ProcessFull <#=_ssas_database_name #> Dimensions" ProtectionLevel="EncryptSensitiveWithUserKey">
+      <Tasks>
+		  <AnalysisServicesProcessing Name="Dimensions_ProcessFull" ConnectionName="<#=_ssas_database_name #>">
+			  <ProcessingConfigurations>
+	<#
+		foreach (Dimension _d in _db.Dimensions) {
+			if (disabledDimensions.IndexOf(_d.ID) < 0) {
+	#>
+				  <DimensionProcessingConfiguration DatabaseId="<#=_db.ID #>" ProcessingOption="ProcessFull" DimensionId="<#=_d.ID #>" />
+	<#
+			}
+		}
+	#>
+			  </ProcessingConfigurations>
+			  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+		  </AnalysisServicesProcessing>
+      </Tasks>
+    </Package>
+	<#
+		foreach (Cube _c in _db.Cubes) {
+			if (disabledCubes.IndexOf(_c.Name) < 0) {
+	#>
+    <Package Name="ProcessFull <#=_ssas_database_name #> <#=_c.ID #> Cube" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+      <Tasks>
+		  <AnalysisServicesProcessing Name="ProcessFull <#=_c.ID #>" ConnectionName="<#=_ssas_database_name #>">
+			  <ProcessingConfigurations>
+				  <CubeProcessingConfiguration DatabaseID="<#=_ssas_database_name #>" ProcessingOption="ProcessFull" CubeId="<#=_c.ID #>" />
+			  </ProcessingConfigurations>
+			  <ErrorConfiguration KeyDuplicate="IgnoreError" KeyErrorLimit="-1" KeyNotFound="IgnoreError" NullKeyNotAllowed="IgnoreError" />
+		  </AnalysisServicesProcessing>
+      </Tasks>
+    </Package>
+	<#
+			}
+		}
+	#>
+    <Package Name="ProcessFull <#=_ssas_database_name #> master" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+        <Tasks>
+            <ExecutePackage Name="ProcessFull Dimensions">
+                <ExternalProjectPackage Package="ProcessFull <#=_ssas_database_name #> <#=_ssas_database_name #> Dimensions.dtsx"></ExternalProjectPackage>
+            </ExecutePackage>
+	<#
+		foreach (Cube _c in _db.Cubes) {
+			if (disabledCubes.IndexOf(_c.Name) < 0) {
+	#>
+            <ExecutePackage Name="ProcessFull <#=_c.ID #> Cube">
+                <ExternalProjectPackage Package="ProcessFull <#=_ssas_database_name #> <#=_c.ID #> Cube.dtsx"></ExternalProjectPackage>
+            </ExecutePackage>
+	<#
+			}
+		}
+	#>
+        </Tasks>
+    </Package>
+  </Packages>
+</Biml>
+<#@template language="C#" hostspecific="true"#>
+<#@import namespace="System.Collections.Generic" #>
+<#@assembly name="C:\Program Files (x86)\Microsoft Visual Studio\2017\SQL\Common7\IDE\CommonExtensions\Microsoft\SSIS\150\Extensions\BI\Microsoft.AnalysisServices.dll" #>
+<#@assembly name="C:\Program Files (x86)\Microsoft Visual Studio\2017\SQL\Common7\IDE\CommonExtensions\Microsoft\SSIS\150\Extensions\BI\Microsoft.AnalysisServices.Core.dll" #>
+<#@import namespace="Microsoft.AnalysisServices" #>

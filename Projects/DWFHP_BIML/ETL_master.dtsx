@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="06/19/2019 14:20:50" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HIT3V007" DTS:CreatorName="admhit3fmi" DTS:DTSID="{ADDACAB4-DDC8-48DD-B1C2-B2EF9020ADD3}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1040" DTS:ObjectName="ETL_master" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{FE1506AE-5E53-4ABC-8340-5905F31AEE47}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{960BB6F9-4646-4B83-8136-30116041D6A7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="ETL_Dim_Customer" DTS:refId="Package\ETL_Dim_Customer" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <PackageName>ETL_Dim_Customer.dtsx</PackageName>
+          <UseProjectReference>True</UseProjectReference>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{F8F39F42-B3C0-407F-B00C-5B64AED39CE6}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="ETL_Dim_Product" DTS:refId="Package\ETL_Dim_Product" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <PackageName>ETL_Dim_Product.dtsx</PackageName>
+          <UseProjectReference>True</UseProjectReference>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{C83A4BDB-7433-44AE-A877-3794CE6237B7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="ETL_Fact_Sales" DTS:refId="Package\ETL_Fact_Sales" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <PackageName>ETL_Fact_Sales.dtsx</PackageName>
+          <UseProjectReference>True</UseProjectReference>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecutePackageTask" DTS:DTSID="{2EC75D0D-5B12-4762-8D09-FA3FC46BBEF7}" DTS:ExecutableType="Microsoft.ExecutePackageTask" DTS:LocaleID="-1" DTS:ObjectName="ETL_Fact_Profitability" DTS:refId="Package\ETL_Fact_Profitability" DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <PackageName>ETL_Fact_Profitability.dtsx</PackageName>
+          <UseProjectReference>True</UseProjectReference>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{74E60039-40DC-441C-BC2A-0CCD73C82DC6}" DTS:From="Package\ETL_Dim_Product" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_ETL_Dim_Product_To_ETL_Fact_Sales" DTS:refId="Package.PrecedenceConstraints[Constraint_ETL_Dim_Product_To_ETL_Fact_Sales]" DTS:To="Package\ETL_Fact_Sales" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{76C30F26-070C-4E15-9215-AEB295EA332E}" DTS:From="Package\ETL_Dim_Customer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_ETL_Dim_Customer_To_ETL_Fact_Sales" DTS:refId="Package.PrecedenceConstraints[Constraint_ETL_Dim_Customer_To_ETL_Fact_Sales]" DTS:To="Package\ETL_Fact_Sales" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{D229F6B9-5437-4310-8CC4-8AA28A52A99C}" DTS:From="Package\ETL_Dim_Product" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_ETL_Dim_Product_To_ETL_Fact_Profitability" DTS:refId="Package.PrecedenceConstraints[Constraint_ETL_Dim_Product_To_ETL_Fact_Profitability]" DTS:To="Package\ETL_Fact_Profitability" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{06182B90-6ECF-41E7-9751-DC34A979D143}" DTS:From="Package\ETL_Dim_Customer" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_ETL_Dim_Customer_To_ETL_Fact_Profitability" DTS:refId="Package.PrecedenceConstraints[Constraint_ETL_Dim_Customer_To_ETL_Fact_Profitability]" DTS:To="Package\ETL_Fact_Profitability" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

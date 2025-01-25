@@ -1,0 +1,8 @@
+/*
+SET NOEXEC OFF;
+--*/ SET NOEXEC ON;
+GO
+
+USE DWFHP;
+GO
+

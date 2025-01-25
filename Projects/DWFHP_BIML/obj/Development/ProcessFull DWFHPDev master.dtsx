@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/19/2019 4:10:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HIT3V007"
+  DTS:CreatorName="admhit3fmi"
+  DTS:DTSID="{1271FA3C-F0F6-4AF6-86C7-1497C802EAB5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1100.123"
+  DTS:LocaleID="1040"
+  DTS:ObjectName="ProcessFull DWFHPDev master"
+  DTS:VersionGUID="{DAD6BC5B-675E-4489-8F8F-3C4ABAC67EBC}"
+  DTS:VersionMajor="0">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ProcessFull Dimensions"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DTSID="{50C3276B-49D1-4419-B0D3-BB2ACA91C393}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ProcessFull Dimensions"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessFull DWFHPDev DWFHPDev Dimensions.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ProcessFull Sales Cube"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:DTSID="{64263C04-2659-4BD5-B295-17ABC854D306}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ProcessFull Sales Cube"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessFull DWFHPDev Sales Cube.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint_ProcessFull Dimensions_To_ProcessFull Sales Cube]"
+      DTS:CreationName=""
+      DTS:DTSID="{5249CF89-616D-4EEA-BCB7-3268BFB8036B}"
+      DTS:From="Package\ProcessFull Dimensions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint_ProcessFull Dimensions_To_ProcessFull Sales Cube"
+      DTS:To="Package\ProcessFull Sales Cube" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

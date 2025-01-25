@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "DWFHP", "DWFHP\DWFHP.dwproj", "{26E24620-116B-4D77-AA12-42AAC731D26C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+		Production|Default = Production|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26E24620-116B-4D77-AA12-42AAC731D26C}.Development|Default.ActiveCfg = Development
+		{26E24620-116B-4D77-AA12-42AAC731D26C}.Development|Default.Build.0 = Development
+		{26E24620-116B-4D77-AA12-42AAC731D26C}.Development|Default.Deploy.0 = Development
+		{26E24620-116B-4D77-AA12-42AAC731D26C}.Production|Default.ActiveCfg = Production
+		{26E24620-116B-4D77-AA12-42AAC731D26C}.Production|Default.Build.0 = Production
+		{26E24620-116B-4D77-AA12-42AAC731D26C}.Production|Default.Deploy.0 = Production
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {307D42DE-31EF-4884-837A-5FA4D086A16A}
+	EndGlobalSection
+EndGlobal

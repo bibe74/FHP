@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="06/19/2019 14:20:50" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HIT3V007" DTS:CreatorName="admhit3fmi" DTS:DTSID="{3C4A3595-4DEC-4A93-9C6F-44FC5BE3AC6B}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1040" DTS:ObjectName="ETL_Fact_Profitability" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{38572A18-5DC6-4C12-A468-FED52E122B68}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager DTS:CreationName="OLEDB" DTS:DTSID="{BC6F1A08-FB40-459C-8BFE-A557FC223A75}" DTS:ObjectName="DWFHP" DTS:refId="Package.ConnectionManagers[DWFHP]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:ConnectionString="data source=HIT3V007\SQL2016;initial catalog=DWFHP;provider=SQLNCLI11.1;integrated security=SSPI;auto translate=False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{A8836681-F3C8-495A-9FE3-2DC11C4D3D5B}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="LandingDbFlorence_usp_Merge_RiepilogoProfitability" DTS:refId="Package\LandingDbFlorence_usp_Merge_RiepilogoProfitability" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC LandingDbFlorence.usp_Merge_RiepilogoProfitability;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{1B59494D-8DBF-4559-B207-B1EB3B9CDFF7}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Staging_usp_Reload_fProfitability" DTS:refId="Package\Staging_usp_Reload_fProfitability" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Staging.usp_Reload_fProfitability;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable DTS:CreationName="Microsoft.ExecuteSQLTask" DTS:DTSID="{F530F5B2-3628-4D6A-A8B6-E56716CCB284}" DTS:ExecutableType="Microsoft.ExecuteSQLTask" DTS:LocaleID="-1" DTS:ObjectName="Fact_usp_Merge_Profitability" DTS:refId="Package\Fact_usp_Merge_Profitability" DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData SQLTask:Connection="DWFHP" SQLTask:SqlStatementSource="EXEC Fact.usp_Merge_Profitability;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{B60CBD76-9004-4822-888B-DBCB4ED33646}" DTS:From="Package\LandingDbFlorence_usp_Merge_RiepilogoProfitability" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_LandingDbFlorence_usp_Merge_RiepilogoProfitability_To_Staging_usp_Reload_fProfitability" DTS:refId="Package.PrecedenceConstraints[Constraint_LandingDbFlorence_usp_Merge_RiepilogoProfitability_To_Staging_usp_Reload_fProfitability]" DTS:To="Package\Staging_usp_Reload_fProfitability" />
+    <DTS:PrecedenceConstraint DTS:CreationName="" DTS:DTSID="{AA1678DE-D0EC-4623-8A0E-06A209643BED}" DTS:From="Package\Staging_usp_Reload_fProfitability" DTS:LogicalAnd="True" DTS:ObjectName="Constraint_Staging_usp_Reload_fProfitability_To_Fact_usp_Merge_Profitability" DTS:refId="Package.PrecedenceConstraints[Constraint_Staging_usp_Reload_fProfitability_To_Fact_usp_Merge_Profitability]" DTS:To="Package\Fact_usp_Merge_Profitability" />
+  </DTS:PrecedenceConstraints>
+</DTS:Executable>

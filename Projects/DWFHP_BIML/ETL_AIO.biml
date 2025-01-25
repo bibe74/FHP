@@ -1,0 +1,113 @@
+﻿<Biml xmlns="http://schemas.varigence.com/biml.xsd">
+    <Connections>
+        <#@ include file="PackageConnections.biml" #>
+    </Connections>
+    <Packages>
+        <Package Name="ETL_Dim_Customer" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+            <Tasks>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_AnagraficaTerritorio" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_AnagraficaTerritorio;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_AnagraficaClienti" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_AnagraficaClienti;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_GCS" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_GCS;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_dRegionalKeyAccount" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_dRegionalKeyAccount;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_dCustomer" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_dCustomer;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Dim_usp_Merge_Customer" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Dim.usp_Merge_Customer;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_dADUser" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_dADUser;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Dim_usp_Merge_ADUser" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Dim.usp_Merge_ADUser;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_bCustomerADUser" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_bCustomerADUser;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Bridge_usp_Merge_CustomerADUser" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Bridge.usp_Merge_CustomerADUser;</DirectInput>
+                </ExecuteSQL>
+            </Tasks>
+        </Package>
+        <Package Name="ETL_Dim_Product" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+            <Tasks>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_AnagraficaProdotti" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_AnagraficaProdotti;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_GPS" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_GPS;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_dProduct" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_dProduct;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Dim_usp_Merge_Product" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Dim.usp_Merge_Product;</DirectInput>
+                </ExecuteSQL>
+            </Tasks>
+        </Package>
+        <Package Name="ETL_Fact_Sales" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+            <Tasks>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_RiepilogoFatturato" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_RiepilogoFatturato;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_fSales" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_fSales;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Fact_usp_Merge_Sales" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Fact.usp_Merge_Sales;</DirectInput>
+                </ExecuteSQL>
+            </Tasks>
+        </Package>
+        <Package Name="ETL_Fact_Profitability" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Linear">
+            <Tasks>
+                <ExecuteSQL Name="LandingDbFlorence_usp_Merge_RiepilogoProfitability" ConnectionName="DWFHP">
+                    <DirectInput>EXEC LandingDbFlorence.usp_Merge_RiepilogoProfitability;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Staging_usp_Reload_fProfitability" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Staging.usp_Reload_fProfitability;</DirectInput>
+                </ExecuteSQL>
+                <ExecuteSQL Name="Fact_usp_Merge_Profitability" ConnectionName="DWFHP">
+                    <DirectInput>EXEC Fact.usp_Merge_Profitability;</DirectInput>
+                </ExecuteSQL>
+            </Tasks>
+        </Package>
+        <Package Name="ETL_master" ProtectionLevel="EncryptSensitiveWithUserKey" ConstraintMode="Parallel">
+            <Tasks>
+                <ExecutePackage Name="ETL_Dim_Customer">
+                    <ExternalProjectPackage Package="ETL_Dim_Customer.dtsx" />
+                </ExecutePackage>
+                <ExecutePackage Name="ETL_Dim_Product">
+                    <ExternalProjectPackage Package="ETL_Dim_Product.dtsx" />
+                </ExecutePackage>
+                <ExecutePackage Name="ETL_Fact_Sales">
+                    <ExternalProjectPackage Package="ETL_Fact_Sales.dtsx" />
+                    <PrecedenceConstraints>
+                        <Inputs>
+                          <Input OutputPathName="ETL_Dim_Customer.Output" />
+                          <Input OutputPathName="ETL_Dim_Product.Output" />
+                        </Inputs>
+                    </PrecedenceConstraints>
+                </ExecutePackage>
+                <ExecutePackage Name="ETL_Fact_Profitability">
+                    <ExternalProjectPackage Package="ETL_Fact_Profitability.dtsx" />
+                    <PrecedenceConstraints>
+                        <Inputs>
+                          <Input OutputPathName="ETL_Dim_Customer.Output" />
+                          <Input OutputPathName="ETL_Dim_Product.Output" />
+                        </Inputs>
+                    </PrecedenceConstraints>
+                </ExecutePackage>
+            </Tasks>
+        </Package>
+    </Packages>
+</Biml>
+<#@template language="C#" hostspecific="true"#>
+<#@import namespace="System.Data" #>

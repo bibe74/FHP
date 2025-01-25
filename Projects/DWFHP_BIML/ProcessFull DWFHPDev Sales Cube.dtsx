@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DTS:Executable DTS:CreationDate="06/19/2019 16:10:30" DTS:CreationName="Microsoft.Package" DTS:CreatorComputerName="HIT3V007" DTS:CreatorName="admhit3fmi" DTS:DTSID="{D50C0708-8593-4F70-A973-7C5957E391FC}" DTS:ExecutableType="Microsoft.Package" DTS:LastModifiedProductVersion="" DTS:LocaleID="1040" DTS:ObjectName="ProcessFull DWFHPDev Sales Cube" DTS:refId="Package" DTS:VersionBuild="0" DTS:VersionGUID="{A188A387-1274-49CF-A2D5-D9C60D8276A9}" DTS:VersionMajor="0" xmlns:DTS="www.microsoft.com/SqlServer/Dts">
+  <DTS:Property DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager DTS:CreationName="MSOLAP100" DTS:DTSID="{248FA41E-43C5-4BC3-B85C-1E52521C0517}" DTS:ObjectName="DWFHPDev" DTS:refId="Package.ConnectionManagers[DWFHPDev]">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager DTS:ConnectionString="Data Source=HIT3V007\SQL2016;Provider=MSOLAP;Impersonation Level=Impersonate;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Executables>
+    <DTS:Executable DTS:CreationName="Microsoft.DTSProcessingTask" DTS:DTSID="{D7245735-A31F-4E02-B573-716F42388AA1}" DTS:ExecutableType="Microsoft.DTSProcessingTask" DTS:LocaleID="-1" DTS:ObjectName="ProcessFull Sales" DTS:refId="Package\ProcessFull Sales">
+      <DTS:ObjectData>
+        <ASProcessingData ConnectionName="DWFHPDev" ProcessingCommands="&lt;Batch xmlns=&quot;http://schemas.microsoft.com/analysisservices/2003/engine&quot;&gt;&#xA;&lt;ErrorConfiguration xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot; xmlns:ddl200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200&quot; xmlns:ddl200_200=&quot;http://schemas.microsoft.com/analysisservices/2010/engine/200/200&quot;&gt;&#xA;&lt;KeyErrorLimit&gt;-1&lt;/KeyErrorLimit&gt;&#xA;&lt;KeyErrorLogFile&gt;&lt;/KeyErrorLogFile&gt;&#xA;&lt;KeyErrorAction&gt;ConvertToUnknown&lt;/KeyErrorAction&gt;&#xA;&lt;KeyErrorLimitAction&gt;StopProcessing&lt;/KeyErrorLimitAction&gt;&#xA;&lt;KeyNotFound&gt;IgnoreError&lt;/KeyNotFound&gt;&#xA;&lt;KeyDuplicate&gt;IgnoreError&lt;/KeyDuplicate&gt;&#xA;&lt;NullKeyConvertedToUnknown&gt;IgnoreError&lt;/NullKeyConvertedToUnknown&gt;&#xA;&lt;NullKeyNotAllowed&gt;IgnoreError&lt;/NullKeyNotAllowed&gt;&#xA;&lt;/ErrorConfiguration&gt;&#xA;  &lt;Process xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:ddl2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2&quot; xmlns:ddl2_2=&quot;http://schemas.microsoft.com/analysisservices/2003/engine/2/2&quot; xmlns:ddl100_100=&quot;http://schemas.microsoft.com/analysisservices/2008/engine/100/100&quot;&gt;&#xA;    &lt;Object&gt;&#xA;      &lt;DatabaseID&gt;DWFHPDev&lt;/DatabaseID&gt;&#xA;      &lt;CubeID&gt;Sales&lt;/CubeID&gt;&#xA;    &lt;/Object&gt;&#xA;    &lt;Type&gt;ProcessFull&lt;/Type&gt;&#xA;    &lt;WriteBackTableCreation&gt;UseExisting&lt;/WriteBackTableCreation&gt;&#xA;  &lt;/Process&gt;&#xA;&lt;/Batch&gt;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+</DTS:Executable>

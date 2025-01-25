@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="FHPDW">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="_DWHFP_001.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>_DWHFP_001.sql</FullPath>
+        </FileNode>
+        <FileNode Name="_DWHFP_002.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>_DWHFP_002.sql</FullPath>
+        </FileNode>
+        <FileNode Name="_DWHFP_003.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>_DWHFP_003.sql</FullPath>
+        </FileNode>
+        <FileNode Name="_SQLQuery1.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>_SQLQuery1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="000_tools_DimDate.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>000_tools_DimDate.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_000_create_database.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_000_create_database.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_001_create_schemas.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_001_create_schemas.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_002_audit_tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_002_audit_tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_003_Import_ADUsers.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_003_Import_ADUsers.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_011_LandingDbFlorence_tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_011_LandingDbFlorence_tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_101_DimDivision.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_101_DimDivision.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_102_DimDate.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_102_DimDate.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_103_DimCustomer.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_103_DimCustomer.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_104_DimProduct.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_104_DimProduct.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_201_FactSales.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_201_FactSales.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DWFHP_202_FactProfitability.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DWFHP_202_FactProfitability.sql</FullPath>
+        </FileNode>
+        <FileNode Name="poc_100_initialize.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>poc_100_initialize.sql</FullPath>
+        </FileNode>
+        <FileNode Name="poc_101_reload_all.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>poc_101_reload_all.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
